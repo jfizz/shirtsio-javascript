@@ -159,7 +159,7 @@ module.exports = function (api_key, options) {
                 var query_param = util._extend(default_query_params, {url: url});
                 post(url_prefix + "shirtsio_webhook/payments/?"+ querystring.stringify(query_param), {}, cb);
             }
-        },
+        }
 
     };
 
