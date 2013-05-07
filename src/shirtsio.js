@@ -22,15 +22,15 @@ function setup_response_handler(req, callback) {
                     var err = null;
                     var result = null;
                     try {
-                        response = JSON.parse(response);
-                        result = response.result;
+                        var response_json = JSON.parse(response);
+                        result = response_json.result;
                         if(200 != res.statusCode) {
-                            err = new Error(response.error);
+                            err = new Error(response_json.error);
                             result = null;
                         }
                     }
                     catch(e) {
-                        err = new Error("Invalid JSON from shirtsio.com");
+                        err = new Error(response);
                         result = null;
                     }
                     callback(err, result);
@@ -99,21 +99,68 @@ module.exports = function (api_key, options) {
         products: {
             list_categories: function(cb) {
                 //https://shirts.io/api/v1/products/category/
-                get(url_prefix + "products/category/?"+default_query_params_string, {}, cb);
+                get(url_prefix + "products/category/?" + default_query_params_string, {}, cb);
             },
             list_products: function(category_id, cb) {
                 // https://shirts.io/api/v1/products/category/{category_id}/
-                get(url_prefix + "products/" + category_id + "/?"+default_query_params_string, {}, cb);
+                get(url_prefix + "products/" + category_id + "/?" + default_query_params_string, {}, cb);
             },
             get_product: function(product_id, cb) {
                 // https://shirts.io/api/v1/products/{Product_id}/
-                get(url_prefix + "products/"+product_id+"/?"+default_query_params_string, {}, cb);
+                get(url_prefix + "products/"+product_id+"/?" + default_query_params_string, {}, cb);
             },
             inventory_count: function(product_id, color, state, cb) {
                 var query_param = util._extend(default_query_params, {'color': color, 'state': state});
                 get(url_prefix+ "products/"+product_id+"/?"+ querystring.stringify(query_param), {}, cb);
             }
-        }
+        },
+        account: {
+            get_balance: function(cb) {
+                get(url_prefix + "internal/integration/balance/?"+ default_query_params_string, {}, cb);
+            }
+        },
+        authentication: {
+            auth: function(query_data, cb) {
+                var query_param = util._extend(default_query_params, query_data);
+                get(url_prefix + "internal/integration/auth/?"+ querystring.stringify(query_param), {}, cb);
+            }
+        },
+        status: {
+            check_order_status: function(order_id, cb) {
+                get(url_prefix + "status/"+order_id+"/?" + default_query_params_string, {}, cb);
+            }
+        },
+        quote: {
+            get_quote: function(query_data, cb) {
+                var query_param = util._extend(default_query_params, query_data);
+                get(url_prefix + "quote/?"+ querystring.stringify(query_param), {}, cb);
+            }
+        },
+        billing: {
+            payment: function(data, cb) {
+                post(url_prefix + "payment/?"+ default_query_params_string, data, cb);
+            },
+            update_payment_status: function(data, cb) {
+                post(url_prefix + "payment_status/?"+ default_query_params_string, data, cb);
+            }
+        },
+        webHook: {
+            add_webhook: function(data, cb) {
+                post(url_prefix + "webhook/register/?"+ default_query_params_string, data, cb);
+            },
+            delete_webhook: function(listener_url, cb) {
+                var query_param = util._extend(default_query_params, {url: listener_url});
+                get(url_prefix + "webhook/delete/?" + querystring.stringify(query_param), {}, cb);
+            },
+            list_webhook: function(cb) {
+                get(url_prefix + "webhook/list/?" + default_query_params_string, {}, cb);
+            },
+            add_payment_webhook: function(url, cb) {
+                var query_param = util._extend(default_query_params, {url: url});
+                post(url_prefix + "shirtsio_webhook/payments/?"+ querystring.stringify(query_param), {}, cb);
+            }
+        },
+
     };
 
 }
