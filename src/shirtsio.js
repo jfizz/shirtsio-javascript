@@ -3,10 +3,10 @@
 var https = require('https');
 var querystring = require('querystring');
 var util = require('util');
+var needle = require('needle');
 
 function setup_response_handler(req, callback) {
     if (typeof callback !== "function") {
-        //console.log("missing callback");
         return;
     }
     req.on('response',
@@ -42,14 +42,8 @@ function setup_response_handler(req, callback) {
 }
 
 module.exports = function (api_key, options) {
-//    var defaults = options || {};
-
-    //var auth = 'Basic ' + new Buffer(api_key + ":").toString('base64');
-
+    var defaults = options || {};
     function _request(method, path, data, callback) {
-
-        //console.log("data", typeof data, data);
-
         // convert first level of deep data structures to foo[bar]=baz syntax
         Object.keys(data).forEach(function(key) {
             if (typeof data[key] === 'object' && data[key] !== null) {
@@ -72,13 +66,12 @@ module.exports = function (api_key, options) {
             path: path,
             method: method,
             headers: {
-                //'Authorization': auth,
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Content-Length': request_data.length
             }
         };
-
+        request_options = util._extend(request_options, defaults);
         var req = https.request(request_options);
         setup_response_handler(req, callback);
         req.write(request_data);
@@ -158,6 +151,28 @@ module.exports = function (api_key, options) {
             add_payment_webhook: function(url, cb) {
                 var query_param = util._extend(default_query_params, {url: url});
                 post(url_prefix + "shirtsio_webhook/payments/?"+ querystring.stringify(query_param), {}, cb);
+            }
+        },
+        order: {
+            place_order: function(data, cb) {
+                var data = util._extend(default_query_params, data);
+                needle.post("https://www.shirts.io/api/v1/order/", data, { timeout: 20000, multipart : true }, function(err, resp, body){
+                    var result = null;
+                    var error = null;
+                    try {
+                        if(200 != resp.statusCode) {
+                            error = body.error;
+                            result = null;
+                        }else {
+                            result = body.result;
+                        }
+                    } catch(e) {
+                        error = new Error(body);
+                        result = null;
+                    }
+                    cb(error, result);
+
+                });
             }
         }
 
