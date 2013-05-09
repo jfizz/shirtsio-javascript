@@ -1,7 +1,9 @@
 <h2>shirtsio-javascript</h2>
 Access to the <a href="https://www.shirts.io/docs/overview/">Shirtsio API</a>.
 <h2>Installation</h2>
-<b>Base on nodejs</b><br/>
+Base on <a href="http://www.nodejs.org/">nodejs</a>, require nodejs core modules and <code>needle</code> module
+<p><code>npm install needle</code></p>
+clone source <code>shirtsio.js</code>
 <h2>Usage overview</h2>
 <pre>
 var api_key = 'abc'; // secret stripe API key
@@ -34,7 +36,7 @@ All methods takes a callback as their last parameter. The callback is called wit
 <li><code>shirtio.account</code> - retrieve balance
     <ul><li><code>.get_balance</code> - <a href="#">retrieve balance</a></li></ul>
 </li>
-<li><code>shirtio.authentication</code> - retrieve balance
+<li><code>shirtio.authentication</code> - retrieve auth
     <ul><li><code>.get_balance(paramters)</code> - <a href="#">retrieve api key</a></li></ul>
 </li>
 <li><code>shirtio.status</code> - retrieve status information
