@@ -45,7 +45,7 @@ shirtsio.authentication.auth({username: 'deantest', password: 'Pa$$w0rd'},functi
     console.log(result.api_key);
 });
 
-shirtsio.status.check_order_status("999", function(err, result) {
+shirtsio.status.check_order_status({order_id: 999999}, function(err, result) {
     if(err) {
         console.log(err);
         return;

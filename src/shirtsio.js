@@ -119,8 +119,9 @@ module.exports = function (api_key, options) {
             }
         },
         status: {
-            check_order_status: function(order_id, cb) {
-                get(url_prefix + "status/"+order_id+"/?" + default_query_params_string, {}, cb);
+            check_order_status: function(query_data, cb) {
+                var query_param = util._extend(default_query_params, query_data);
+                get(url_prefix + "status/?" + querystring.stringify(query_param), {}, cb);
             }
         },
         quote: {
