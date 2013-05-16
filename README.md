@@ -28,10 +28,12 @@ All methods takes a callback as their last parameter. The callback is called wit
 </p>
 <ul>
 <li><code>shirtio.products</code> - retrieve categories, products and inventory
-    <ul><li><code>.list_categories</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve categories</a></li></ul>
-    <ul><li><code>.list_products(category_id)</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve products</a></li></ul>
-    <ul><li><code>.get_product(product_id)</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve product</a></li></ul>
-    <ul><li><code>.inventory_count(product_id, color, state)</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve inventory count</a></li></ul>
+    <ul>
+    <li><code>.list_categories</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve categories</a></li>
+    <li><code>.list_products(category_id)</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve products</a></li>
+    <li><code>.get_product(product_id)</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve product</a></li>
+    <li><code>.inventory_count(product_id, color, state)</code> - <a href="https://www.shirts.io/docs/products_reference/">retrieve inventory count</a></li>
+    </ul>
 </li>
 <li><code>shirtio.account</code> - retrieve balance
     <ul><li><code>.get_balance</code> - <a href="#">retrieve balance</a></li></ul>
@@ -46,14 +48,18 @@ All methods takes a callback as their last parameter. The callback is called wit
     <ul><li><code>.get_quote(parameters)</code> - <a href="https://www.shirts.io/docs/quote_reference/">retrieve quote</a></li></ul>
 </li>
 <li><code>shirtio.billing</code> - retrieve payment information and update payment status
-    <ul><li><code>.payment(parameters)</code> - <a href="#">retrieve payment information</a></li></ul>
-    <ul><li><code>.update_payment_status(parameters)</code> - <a href="#">update payment status</a></li></ul>
+    <ul>
+    <li><code>.payment(parameters)</code> - <a href="#">retrieve payment information</a></li>
+    <li><code>.update_payment_status(parameters)</code> - <a href="#">update payment status</a></li>
+    </ul>
 </li>
 <li><code>shirtio.webHook</code> - add, delete, retrieve webhook(s) and add payment webhook
-    <ul><li><code>.add_webhook(parameters)</code> - <a href="#">add webhook</a></li></ul>
-    <ul><li><code>.delete_webhook(url)</code> - <a href="#">delete webhook</a></li></ul>
-    <ul><li><code>.list_webhook</code> - <a href="#">retrieve webhooks</a></li></ul>
-    <ul><li><code>.add_payment_webhook(url)</code> - <a href="#">add payment webhook</a></li></ul>
+    <ul>
+       <li><code>.add_webhook(parameters)</code> - <a href="#">add webhook</a></li>
+       <li><code>.delete_webhook(url)</code> - <a href="#">delete webhook</a></li>
+       <li><code>.list_webhook</code> - <a href="#">retrieve webhooks</a></li>
+       <li><code>.add_payment_webhook(url)</code> - <a href="#">add payment webhook</a></li>
+    </ul>
 </li>
 <li><code>shirtio.order</code> - Placing an Order
     <ul><li><code>.place_order(parameters)</code> - <a href="https://www.shirts.io/docs/order_reference/">placing an Order</a></li></ul>
