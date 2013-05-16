@@ -42,7 +42,7 @@ All methods takes a callback as their last parameter. The callback is called wit
     <ul><li><code>.get_balance(paramters)</code> - <a href="#">retrieve api key</a></li></ul>
 </li>
 <li><code>shirtio.status</code> - retrieve status information
-    <ul><li><code>.check_order_status(order_id)</code> - <a href="https://www.shirts.io/docs/status_reference/">retrieve current status on the order</a></li></ul>
+    <ul><li><code>.check_order_status(parameter)</code> - <a href="https://www.shirts.io/docs/status_reference/">retrieve current status on the order</a></li></ul>
 </li>
 <li><code>shirtio.quote</code> - retrieve quote
     <ul><li><code>.get_quote(parameters)</code> - <a href="https://www.shirts.io/docs/quote_reference/">retrieve quote</a></li></ul>
