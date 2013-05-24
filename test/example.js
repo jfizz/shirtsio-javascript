@@ -1,4 +1,4 @@
-var api_key = 'a086134c5625ebfd4e080d19749bc0cb736ad1d5';  // secret stripe API key
+var api_key = 'your api key';  // secret stripe API key
 var shirtsio = require('../src/shirtsio.js')(api_key);
 
 shirtsio.products.list_categories(
@@ -26,23 +26,6 @@ shirtsio.products.inventory_count(3, 'White', '',function(err, result){
         return;
     }
     console.log(result);
-});
-
-shirtsio.account.get_balance(function(err, result) {
-    if(err){
-        console.log(err);
-        return;
-    }
-    console.log(result);
-});
-
-shirtsio.authentication.auth({username: 'deantest', password: 'Pa$$w0rd'},function(err, result) {
-    if(err) {
-        console.log(err);
-        return;
-    }
-    console.log(result);
-    console.log(result.api_key);
 });
 
 shirtsio.status.check_order_status({order_id: 999999}, function(err, result) {

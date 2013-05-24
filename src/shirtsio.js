@@ -107,17 +107,6 @@ module.exports = function (api_key, options) {
                 get(url_prefix+ "products/"+product_id+"/?"+ querystring.stringify(query_param), {}, cb);
             }
         },
-        account: {
-            get_balance: function(cb) {
-                get(url_prefix + "internal/integration/balance/?"+ default_query_params_string, {}, cb);
-            }
-        },
-        authentication: {
-            auth: function(query_data, cb) {
-                var query_param = util._extend(default_query_params, query_data);
-                get(url_prefix + "internal/integration/auth/?"+ querystring.stringify(query_param), {}, cb);
-            }
-        },
         status: {
             check_order_status: function(query_data, cb) {
                 var query_param = util._extend(default_query_params, query_data);
