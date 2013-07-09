@@ -1,4 +1,4 @@
-var api_key = 'your api key';  // secret stripe API key
+var api_key = 'your api key';  // secret Shirts.io API key
 var shirtsio = require('../src/shirtsio.js')(api_key);
 
 shirtsio.products.list_categories(
