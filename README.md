@@ -6,7 +6,7 @@ Base on <a href="http://www.nodejs.org/">nodejs</a>, require nodejs core modules
 clone source <code>shirtsio.js</code>
 <h2>Usage overview</h2>
 <pre>
-var api_key = 'abc'; // secret stripe API key
+var api_key = 'abc'; // secret Shirts.io API key
 var shirtsio = require('shirtsio.js')(api_key);
 shirtsio.products.list_categories(
     function(err, response) {
