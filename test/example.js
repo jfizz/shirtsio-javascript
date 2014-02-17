@@ -37,7 +37,7 @@ shirtsio.status.check_order_status({order_id: 999999}, function(err, result) {
 });
 
 var params = {'garment[0][product_id]': 3, 'garment[0][color]': 'White', 'garment[0][sizes][med]': 100,
-    'print[front][color_count]': 5};
+    'print[front][color_count]': 5, 'third_party_shipping': 0};
 shirtsio.quote.get_quote(params, function(err, result) {
     if(err) {
         console.log(err);
@@ -89,7 +89,47 @@ var data = {'test': 'True', 'price': 79.28,
     'addresses[0][city]': 'Las Vegas', 'addresses[0][state]': 'Nevada', 'addresses[0][country]': 'US',
     'addresses[0][zipcode]': '12345', 'addresses[0][batch]': 1, 'addresses[0][sizes][med]': 2,
     'addresses[0][sizes][lrg]': 2,
-    'print_type': 'Digital Print', 'ship_type': 'Standard',
+    'print_type': 'Digital Print', 'third_party_shipping': 0,
+    'garment[0][product_id]': 2, 'garment[0][color]': "White",
+    'garment[0][sizes][med]': 2, 'garment[0][sizes][lrg]': 2, 'print[front][color_count]': 5,
+    'print[front][artwork]': {file: "front.png", content_type: "image/png"},'print[front][proof]': {file: "front.jpg", content_type: "image/jpg"},
+    'print[back][artwork]': {file: "back.png", content_type: "image/png"},'print[back][proof]': {file: "back.jpg", content_type: "image/jpg"}
+};
+var data_ups = {'test': 'True', 'price': 79.28,
+    'print[back][color_count]': 4, 'print[back][colors][0]': "101C", 'print[back][colors][1]': '107U',
+    'addresses[0][name]': 'John Doe', 'addresses[0][address]': '123 Hope Ln.',
+    'addresses[0][city]': 'Las Vegas', 'addresses[0][state]': 'Nevada', 'addresses[0][country]': 'US',
+    'addresses[0][zipcode]': '12345', 'addresses[0][batch]': 1, 'addresses[0][sizes][med]': 2,
+    'addresses[0][sizes][lrg]': 2, 'addresses[0][third_party_ship_type]': 'ups',
+    'third_party_shipping[0][account_type]': 'ups', 'third_party_shipping[0][account_number]': 'ups1234567890',
+    'print_type': 'Digital Print', 'third_party_shipping': 1,
+    'garment[0][product_id]': 2, 'garment[0][color]': "White",
+    'garment[0][sizes][med]': 2, 'garment[0][sizes][lrg]': 2, 'print[front][color_count]': 5,
+    'print[front][artwork]': {file: "front.png", content_type: "image/png"},'print[front][proof]': {file: "front.jpg", content_type: "image/jpg"},
+    'print[back][artwork]': {file: "back.png", content_type: "image/png"},'print[back][proof]': {file: "back.jpg", content_type: "image/jpg"}
+};
+var data_usps = {'test': 'True', 'price': 79.28,
+    'print[back][color_count]': 4, 'print[back][colors][0]': "101C", 'print[back][colors][1]': '107U',
+    'addresses[0][name]': 'John Doe', 'addresses[0][address]': '123 Hope Ln.',
+    'addresses[0][city]': 'Las Vegas', 'addresses[0][state]': 'Nevada', 'addresses[0][country]': 'US',
+    'addresses[0][zipcode]': '12345', 'addresses[0][batch]': 1, 'addresses[0][sizes][med]': 2,
+    'addresses[0][sizes][lrg]': 2, 'addresses[0][third_party_ship_type]': 'usps',
+    'third_party_shipping[0][account_type]': 'usps',
+    'third_party_shipping[0][username]': 'Test Account', 'third_party_shipping[0][password]': 'test',
+    'print_type': 'Digital Print', 'third_party_shipping': 1,
+    'garment[0][product_id]': 2, 'garment[0][color]': "White",
+    'garment[0][sizes][med]': 2, 'garment[0][sizes][lrg]': 2, 'print[front][color_count]': 5,
+    'print[front][artwork]': {file: "front.png", content_type: "image/png"},'print[front][proof]': {file: "front.jpg", content_type: "image/jpg"},
+    'print[back][artwork]': {file: "back.png", content_type: "image/png"},'print[back][proof]': {file: "back.jpg", content_type: "image/jpg"}
+};
+var data_dhl = {'test': 'True', 'price': 79.28,
+    'print[back][color_count]': 4, 'print[back][colors][0]': "101C", 'print[back][colors][1]': '107U',
+    'addresses[0][name]': 'John Doe', 'addresses[0][address]': '123 Hope Ln.',
+    'addresses[0][city]': 'Las Vegas', 'addresses[0][state]': 'Nevada', 'addresses[0][country]': 'US',
+    'addresses[0][zipcode]': '12345', 'addresses[0][batch]': 1, 'addresses[0][sizes][med]': 2,
+    'addresses[0][sizes][lrg]': 2, 'addresses[0][third_party_ship_type]': 'dhl',
+    'third_party_shipping[0][account_type]': 'dhl', 'third_party_shipping[0][account_number]': 'dhl1234567890',
+    'print_type': 'Digital Print', 'third_party_shipping': 1,
     'garment[0][product_id]': 2, 'garment[0][color]': "White",
     'garment[0][sizes][med]': 2, 'garment[0][sizes][lrg]': 2, 'print[front][color_count]': 5,
     'print[front][artwork]': {file: "front.png", content_type: "image/png"},'print[front][proof]': {file: "front.jpg", content_type: "image/jpg"},
